@@ -9,11 +9,19 @@ import typer
 from rich.console import Console
 from rich.table import Table
 import yfinance as yf
+import pyfiglet
 
+# TradeDeskCLI: A simple command-line tool to search for stock tickers and print their current prices.
 app = typer.Typer(add_completion=False, help="TradedeskCLI: search tickers and print current prices.")
 console = Console()
 
 YAHOO_SEARCH_URL = "https://query1.finance.yahoo.com/v1/finance/search"
+
+
+
+def print_banner():
+    banner = pyfiglet.figlet_format("TradeDeskCLI")
+    console.print(banner, style="bold green")
 
 
 def lookup_ticker_by_name(name: str) -> Optional[dict]:
@@ -127,4 +135,5 @@ def search_command(
 
 
 if __name__ == "__main__":
+    print_banner()
     app()
